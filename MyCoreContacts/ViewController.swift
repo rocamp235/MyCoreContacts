@@ -13,8 +13,6 @@ import CoreData
 class ViewController: UIViewController {
     
     @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var birthdate: UITextField!
-    @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var snapchat: UITextField!
     
     
@@ -27,10 +25,7 @@ class ViewController: UIViewController {
         //0a Edit contact
         name.isEnabled = true
         snapchat.isEnabled = true
-        birthdate.isEnabled = true
-        phone.isEnabled = true
-        btnSave.isHidden = false
-        btnEdit.isHidden = true
+
         name.becomeFirstResponder()
         
         //**End Copy**
@@ -46,8 +41,6 @@ class ViewController: UIViewController {
         {
             
             contactdb.setValue(name.text, forKey: "name")
-            contactdb.setValue(birthdate.text, forKey: "birthdate")
-            contactdb.setValue(phone.text, forKey: "phone")
             contactdb.setValue(snapchat.text, forKey: "snapchat")
             
         }
@@ -62,8 +55,6 @@ class ViewController: UIViewController {
             
             contact.name = name.text!
             contact.snapchat = snapchat.text!
-            contact.phone = phone.text!
-            contact.birthdate = birthdate.text!
         
         }
         var error: NSError?
@@ -115,24 +106,18 @@ class ViewController: UIViewController {
         if (contactdb != nil)
         {
             name.text = contactdb.value(forKey: "name") as? String
-            birthdate.text = contactdb.value(forKey: "birthdate") as? String
             snapchat.text = contactdb.value(forKey: "snapchat") as? String
-            phone.text = contactdb.value(forKey: "phone") as? String
             btnSave.setTitle("Update", for: UIControl.State())
            
             btnEdit.isHidden = false
             name.isEnabled = false
             snapchat.isEnabled = false
-            birthdate.isEnabled = false
-            phone.isEnabled = false
             btnSave.isHidden = true
         }else{
           
             btnEdit.isHidden = true
             name.isEnabled = true
             snapchat.isEnabled = true
-            birthdate.isEnabled = true
-            phone.isEnabled = true
         }
         name.becomeFirstResponder()
         // Do any additional setup after loading the view.
@@ -172,8 +157,6 @@ class ViewController: UIViewController {
         //forces resign first responder and hides keyboard
         name.endEditing(true)
         snapchat.endEditing(true)
-        birthdate.endEditing(true)
-        phone.endEditing(true)
         
     }
     //**End Copy**
